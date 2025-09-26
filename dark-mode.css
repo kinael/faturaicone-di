@@ -1,0 +1,80 @@
+.botao-modo-escuro {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.modal {
+  color: black;
+}
+
+body.dark-mode {
+  background-color: #363636;
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container.dark-mode {
+  background-color: #1E1E1E;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+input[type=text].dark-mode,
+button.dark-mode,
+select.dark-mode {
+  background-color: #2B2B2B;
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 4px;
+}
+
+input[type=text].dark-mode:focus {
+  border: 2px solid #1ABC9C;
+  box-shadow: 0 0 8px #1ABC9C;
+}
+
+button.dark-mode {
+  background-color: #1ABC9C;
+  color: #fff;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button.dark-mode:hover {
+  background-color: #16A085;
+  transform: scale(1.05);
+}
+
+.modo-escuro-btn {
+  background-color: #1ABC9C;
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.modo-escuro-btn:hover {
+  background-color: #16A085;
+  transform: scale(1.05);
+}
+
+body:not(.dark-mode) .modo-escuro-btn {
+  background-color: #555;
+  color: white;
+}
+
+body.dark-mode .modo-escuro-btn {
+  background-color: #1ABC9C;
+  color: white;
+}

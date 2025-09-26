@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <link rel="shortcut icon" type="imagex/png" href="https://i.imgur.com/rHzaxpo.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cálculo de Impostos para Entrada de DI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dark-mode.css" id="dark-mode-stylesheet">
+</head>
+<body>
+
+  <div class="imagens">
+    <img src="https://i.imgur.com/O7MOBCK.png" />
+  </div>
+ 
+  <div class="container">
+    <h1 class="titulopg animate-text">Cálculo de Impostos - Entrada de DI</h1>
+
+    <form id="entradaDIForm">
+      <label for="valorPIS" class="animate-text"><b> Valor total PIS: </b></label>
+      <input type="text" id="valorPIS" placeholder="Ex.: 12.500,50 ou 12500,50 (com vírgula)" required>
+
+      <label for="valorCOFINS" class="animate-text"><b> Valor total COFINS: </b></label>
+      <input type="text" id="valorCOFINS" placeholder="Ex.: 30.100,50 ou 30100,50 (com vírgula)" required>
+
+      <label for="valorSISCOMEX" class="animate-text"><b> Valor total SISCOMEX: </b></label>
+      <input type="text" id="valorSISCOMEX" placeholder="Ex.: 500 ou 500,00 (com vírgula)" required>
+
+      <label for="valorNumerario" class="animate-text"><b> Valor total NUMERARIO: </b></label>
+      <input type="text" id="valorNumerario" placeholder="Ex.: 1.300,50 ou 1300,50 (com vírgula)" required>
+
+      <label for="valorVariacao" class="animate-text"><b> Valor total VARIAÇÃO: </b></label>
+      <input type="text" id="valorVariacao" placeholder="Ex.: 1.100,50 ou 1100,50 (com vírgula)" required>
+
+      <label for="quantidadeFornecedores" class="animate-text"><b> Quantidade de fornecedores: </b></label>
+      <select id="quantidadeFornecedores" class="animate-text">
+        <option value="0">Selecione</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+      <div id="fornecedoresFields" style="display:none;"></div>
+
+      <button type="button" id="calcularbotao" onclick="calcularValores()" class="animate-text">Concluir</button>
+      <button type="button" id="limparbotao" onclick="limparCampos()" class="animate-text">Limpar</button>
+      <button type="button" id="exportarExcelButton" onclick="exportarParaExcel()" style="display:none;" class="animate-text">Exportar para Microsoft Excel</button>
+    </form>
+
+    <div id="resultado"></div>
+  </div>
+
+  <div class="botao-modo-escuro">
+    <button class="modo-escuro-btn" onclick="alternarModo()">Modo Escuro</button>
+  </div>
+
+  <button type="button" id="recuperarCalculoBtn" onclick="exibirModal()">Último cálculo realizado</button>
+  <button type="button" id="sobreBtn" onclick="exibirModalSobre()">Sobre</button>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModal()">&times;</span>
+      <p><b> Último cálculo realizado: </b></p>
+      <div id="resultadoAnterior"></div>
+    </div>
+  </div>
+
+  <div id="modalSobre" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharModalSobre()">&times;</span>
+      <p> Ferramenta desenvolvida para calcular e distribuir corretamente os impostos em uma entrada de importação, quando há mais de um fornecedor envolvido na transação. </p>
+    </div>
+  </div>
+
+  <div class="calculator" id="calculator">
+    <div class="calculator-screen" id="calculator-screen">0</div>
+    <div class="calculator-buttons">
+      <div class="calculator-button" onclick="appendNumber('7')">7</div>
+      <div class="calculator-button" onclick="appendNumber('8')">8</div>
+      <div class="calculator-button" onclick="appendNumber('9')">9</div>
+      <div class="calculator-button operator" onclick="setOperator('/')">/</div>
+      <div class="calculator-button" onclick="appendNumber('4')">4</div>
+      <div class="calculator-button" onclick="appendNumber('5')">5</div>
+      <div class="calculator-button" onclick="appendNumber('6')">6</div>
+      <div class="calculator-button operator" onclick="setOperator('*')">*</div>
+      <div class="calculator-button" onclick="appendNumber('1')">1</div>
+      <div class="calculator-button" onclick="appendNumber('2')">2</div>
+      <div class="calculator-button" onclick="appendNumber('3')">3</div>
+      <div class="calculator-button operator" onclick="setOperator('-')">-</div>
+      <div class="calculator-button double" onclick="appendNumber('0')">0</div>
+      <div class="calculator-button" onclick="appendNumber('.')">.</div>
+      <div class="calculator-button operator" onclick="setOperator('+')">+</div>
+      <div class="calculator-button double-operator" onclick="calculateResult()">=</div>
+      <div class="calculator-button double-operator" onclick="clearScreen()">C</div>
+    </div>
+  </div>
+
+  <button class="toggle-calculator" onclick="toggleCalculator()">&#x1F522;</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx-style/0.12.13/dist/xlsx.full.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
